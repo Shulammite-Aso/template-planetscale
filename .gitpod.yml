@@ -1,0 +1,13 @@
+tasks:
+  - name: Get Database
+    init: |
+      docker pull planetscale/pscale:latest
+    command: |
+      docker run -p 3306:3306 planetscale/pscale
+  - name: Login To Database
+    command: |
+      gp await-port 3306
+      pscale auth login
+ports:
+  - port: 3306
+    onOpen: ignore
