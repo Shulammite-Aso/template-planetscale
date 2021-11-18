@@ -4,9 +4,6 @@ tasks:
     command: |
       mkdir -p $HOME/.config/planetscale
       alias pscale="docker run -e HOME=/tmp -v $HOME/.config/planetscale:/tmp/.config/planetscale --user $(id -u):$(id -g) --rm -it -p 3306:3306/tcp planetscale/pscale:latest"
-  - name: Login To Database
-    command: |
-      gp await-port 3306
       pscale auth login
 ports:
   - port: 3306
