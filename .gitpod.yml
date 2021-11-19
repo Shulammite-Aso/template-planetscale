@@ -1,9 +1,9 @@
 tasks:
-  - init: docker pull planetscale/pscale:latest
-    command: |
+  - init: |
+      docker pull planetscale/pscale:latest
       mkdir -p $HOME/.config/planetscale
       alias pscale="docker run -e HOME=/tmp -v $HOME/.config/planetscale:/tmp/.config/planetscale --user $(id -u):$(id -g) --rm -it -p 3306:3306/tcp planetscale/pscale:latest"
-      pscale auth login
+    command: pscale auth login
 ports:
   - port: 3306
     onOpen: ignore
